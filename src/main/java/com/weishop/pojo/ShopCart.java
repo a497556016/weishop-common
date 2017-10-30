@@ -41,10 +41,7 @@ public class ShopCart extends Model<ShopCart> {
      * 数量
      */
 	private Integer count;
-    /**
-     * 单价
-     */
-	private BigDecimal price;
+
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
@@ -88,14 +85,6 @@ public class ShopCart extends Model<ShopCart> {
 
 	public void setCount(Integer count) {
 		this.count = count;
-	}
-
-	public BigDecimal getPrice() {
-		return price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
 	}
 
 	public String getDeleteFlag() {
@@ -146,8 +135,6 @@ public class ShopCart extends Model<ShopCart> {
 
 	public static final String COUNT = "count";
 
-	public static final String PRICE = "price";
-
 	public static final String DELETE_FLAG = "delete_flag";
 
 	public static final String CREATE_TIME = "create_time";
@@ -170,7 +157,6 @@ public class ShopCart extends Model<ShopCart> {
 			", userId=" + userId +
 			", proItemId=" + proItemId +
 			", count=" + count +
-			", price=" + price +
 			", deleteFlag=" + deleteFlag +
 			", createTime=" + createTime +
 			", createBy=" + createBy +

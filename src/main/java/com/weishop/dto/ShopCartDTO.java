@@ -41,6 +41,10 @@ public class ShopCartDTO {
      * 单价
      */
 	private BigDecimal price;
+	/**
+	 * 商品图片
+	 */
+	private String picUrl;
 	public Integer getId() {
 		return id;
 	}
@@ -100,5 +104,11 @@ public class ShopCartDTO {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	public String getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 }
