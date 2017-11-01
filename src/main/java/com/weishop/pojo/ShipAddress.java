@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -37,7 +38,9 @@ public class ShipAddress extends Model<ShipAddress> {
 	private String province;
 	private String city;
 	private String street;
-	private String utf8;
+	@TableField("delete_flag")
+    @TableLogic
+	private String deleteFlag;
 	@TableField("create_time")
 	private Date createTime;
 	@TableField("create_by")
@@ -128,12 +131,12 @@ public class ShipAddress extends Model<ShipAddress> {
 		this.street = street;
 	}
 
-	public String getUtf8() {
-		return utf8;
+	public String getDeleteFlag() {
+		return deleteFlag;
 	}
 
-	public void setUtf8(String utf8) {
-		this.utf8 = utf8;
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 
 	public Date getCreateTime() {
@@ -188,7 +191,7 @@ public class ShipAddress extends Model<ShipAddress> {
 
 	public static final String STREET = "street";
 
-	public static final String UTF8 = "utf8";
+	public static final String DELETE_FLAG = "delete_flag";
 
 	public static final String CREATE_TIME = "create_time";
 
@@ -216,7 +219,7 @@ public class ShipAddress extends Model<ShipAddress> {
 			", province=" + province +
 			", city=" + city +
 			", street=" + street +
-			", utf8=" + utf8 +
+			", delete_flag=" + deleteFlag +
 			", createTime=" + createTime +
 			", createBy=" + createBy +
 			", modifyTime=" + modifyTime +
