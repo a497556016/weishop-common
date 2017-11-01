@@ -21,6 +21,14 @@ public class ShopCartDTO {
      * 编码
      */
 	private String code;
+	/**
+     * 型号
+     */
+	private String model;
+    /**
+     * 尺寸
+     */
+	private String size;
     /**
      * 描述
      */
@@ -110,5 +118,17 @@ public class ShopCartDTO {
 	}
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
 	}
 }

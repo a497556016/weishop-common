@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.util.ReflectionUtils;
@@ -30,8 +31,16 @@ public class PropertyUtils {
 	}
 	
 	public static Object convertModelToDTO(Object model,Object dto) {
+		return convertModelToDTO(model, dto, null);
+	}
+	
+	public static Object convertModelToDTO(Object model,Object dto,String[] ignors) {
 		Field[] modelFields = model.getClass().getDeclaredFields();
 		for (Field modelField : modelFields) {
+			String fieldName = modelField.getName();
+			if(null!=ignors&&ArrayUtils.contains(ignors, fieldName)){
+				continue;
+			}
 			String name = modelField.toGenericString();
 			if(StringUtils.contains(name, "static")||StringUtils.contains(name, "final")) {
 				continue;
