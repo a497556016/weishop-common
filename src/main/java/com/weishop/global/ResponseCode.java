@@ -2,7 +2,8 @@ package com.weishop.global;
 
 public enum ResponseCode {
 	SUCCESS(1,"执行成功！"),
-	ERROR(0,"执行异常！");
+	ERROR(0,"执行异常！"),
+	PARAM_NOT_VALID(2,"参数验证失败！");
 	
 	private Integer code;
 	private String msg;

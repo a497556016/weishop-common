@@ -7,19 +7,19 @@ public class BaseResponse<T> {
 	private Integer code;
 	private T data;
 	
-	public static BaseResponse<?> result() {
+	public static <T> BaseResponse<T> result() {
 		return result(ResponseCode.SUCCESS.getMsg());
 	}
 	
-	public static BaseResponse<?> success(){
+	public static <T> BaseResponse<T> success(){
 		return result(ResponseCode.SUCCESS.getMsg(),ResponseCode.SUCCESS.getCode());
 	}
 	
-	public static BaseResponse<?> result(String msg) {
+	public static <T> BaseResponse<T> result(String msg) {
 		return result(msg,ResponseCode.SUCCESS.getCode());
 	}
 	
-	public static BaseResponse<?> result(String msg,Integer code) {
+	public static <T> BaseResponse<T> result(String msg,Integer code) {
 		return result(msg,code,null);
 	}
 	
@@ -39,15 +39,8 @@ public class BaseResponse<T> {
 		return baseResponse;
 	}
 	
-	public static BaseResponse<?> error(String msg) {
-		return error(msg,ResponseCode.ERROR.getCode());
-	}
-	
-	public static BaseResponse<?> error(String msg,Integer code) {
-		BaseResponse<?> baseResponse = new BaseResponse<>();
-		baseResponse.setCode(code);
-		baseResponse.setMsg(msg);
-		return baseResponse;
+	public static <T> BaseResponse<T> error(String msg) {
+		return result(msg,ResponseCode.ERROR.getCode());
 	}
 	
 	public String getMsg() {

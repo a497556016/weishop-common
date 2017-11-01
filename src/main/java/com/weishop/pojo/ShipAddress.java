@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import java.io.Serializable;
 
 /**
@@ -16,7 +17,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-10-27
+ * @since 2017-11-01
  */
 @TableName("base_ship_address")
 public class ShipAddress extends Model<ShipAddress> {
@@ -33,11 +34,34 @@ public class ShipAddress extends Model<ShipAddress> {
 	@TableField("contact_user_name")
 	private String contactUserName;
 	private String sex;
+    /**
+     * 国家
+     */
 	private String country;
+    /**
+     * 省份
+     */
 	private String province;
+    /**
+     * 城市
+     */
 	private String city;
+    /**
+     * 街道
+     */
 	private String street;
-	private String utf8;
+    /**
+     * 社区
+     */
+	private String community;
+    /**
+     * 楼栋门牌号
+     */
+	@TableField("building_floor")
+	private String buildingFloor;
+	@TableField("delete_flag")
+    @TableLogic
+	private String deleteFlag;
 	@TableField("create_time")
 	private Date createTime;
 	@TableField("create_by")
@@ -128,12 +152,28 @@ public class ShipAddress extends Model<ShipAddress> {
 		this.street = street;
 	}
 
-	public String getUtf8() {
-		return utf8;
+	public String getCommunity() {
+		return community;
 	}
 
-	public void setUtf8(String utf8) {
-		this.utf8 = utf8;
+	public void setCommunity(String community) {
+		this.community = community;
+	}
+
+	public String getBuildingFloor() {
+		return buildingFloor;
+	}
+
+	public void setBuildingFloor(String buildingFloor) {
+		this.buildingFloor = buildingFloor;
+	}
+
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 
 	public Date getCreateTime() {
@@ -188,7 +228,11 @@ public class ShipAddress extends Model<ShipAddress> {
 
 	public static final String STREET = "street";
 
-	public static final String UTF8 = "utf8";
+	public static final String COMMUNITY = "community";
+
+	public static final String BUILDING_FLOOR = "building_floor";
+
+	public static final String DELETE_FLAG = "delete_flag";
 
 	public static final String CREATE_TIME = "create_time";
 
@@ -216,7 +260,9 @@ public class ShipAddress extends Model<ShipAddress> {
 			", province=" + province +
 			", city=" + city +
 			", street=" + street +
-			", utf8=" + utf8 +
+			", community=" + community +
+			", buildingFloor=" + buildingFloor +
+			", deleteFlag=" + deleteFlag +
 			", createTime=" + createTime +
 			", createBy=" + createBy +
 			", modifyTime=" + modifyTime +
