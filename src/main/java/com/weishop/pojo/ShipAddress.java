@@ -3,6 +3,8 @@ package com.weishop.pojo;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.weishop.pojo.enums.Sex;
+
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -17,7 +19,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-11-01
+ * @since 2017-11-02
  */
 @TableName("base_ship_address")
 public class ShipAddress extends Model<ShipAddress> {
@@ -33,7 +35,7 @@ public class ShipAddress extends Model<ShipAddress> {
 	private String contactNumber;
 	@TableField("contact_user_name")
 	private String contactUserName;
-	private String sex;
+	private Sex sex;
     /**
      * 国家
      */
@@ -59,6 +61,11 @@ public class ShipAddress extends Model<ShipAddress> {
      */
 	@TableField("building_floor")
 	private String buildingFloor;
+    /**
+     * 是否默认项
+     */
+	@TableField("is_default")
+	private Boolean isDefault;
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
@@ -112,11 +119,11 @@ public class ShipAddress extends Model<ShipAddress> {
 		this.contactUserName = contactUserName;
 	}
 
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
 
@@ -166,6 +173,14 @@ public class ShipAddress extends Model<ShipAddress> {
 
 	public void setBuildingFloor(String buildingFloor) {
 		this.buildingFloor = buildingFloor;
+	}
+
+	public Boolean getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(Boolean isDefault) {
+		this.isDefault = isDefault;
 	}
 
 	public String getDeleteFlag() {
@@ -232,6 +247,8 @@ public class ShipAddress extends Model<ShipAddress> {
 
 	public static final String BUILDING_FLOOR = "building_floor";
 
+	public static final String IS_DEFAULT = "is_default";
+
 	public static final String DELETE_FLAG = "delete_flag";
 
 	public static final String CREATE_TIME = "create_time";
@@ -262,6 +279,7 @@ public class ShipAddress extends Model<ShipAddress> {
 			", street=" + street +
 			", community=" + community +
 			", buildingFloor=" + buildingFloor +
+			", isDefault=" + isDefault +
 			", deleteFlag=" + deleteFlag +
 			", createTime=" + createTime +
 			", createBy=" + createBy +

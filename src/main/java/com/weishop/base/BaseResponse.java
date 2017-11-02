@@ -43,6 +43,10 @@ public class BaseResponse<T> {
 		return result(msg,ResponseCode.ERROR.getCode());
 	}
 	
+	public static <T> BaseResponse<T> error() {
+		return result(ResponseCode.ERROR.getMsg(),ResponseCode.ERROR.getCode());
+	}
+	
 	public String getMsg() {
 		return msg;
 	}

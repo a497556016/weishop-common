@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -144,4 +146,69 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 		return BaseResponse.result(object);
 	}
 	
+	@RequestMapping("/save")
+	@ResponseBody
+	protected BaseResponse<E> save(E record){
+		boolean re = this.baseService.insert(record);
+		if(re) {
+			return BaseResponse.result(record);
+		}else {
+			return BaseResponse.error();
+		}
+	}
+	
+	@RequestMapping(value="/saveList")
+	@ResponseBody
+	protected BaseResponse<List<E>> saveList(@RequestBody List<E> list){
+		boolean re = this.baseService.insertBatch(list);
+		if(re) {
+			return BaseResponse.result(list);
+		}else {
+			return BaseResponse.error();
+		}
+	}
+	
+	@RequestMapping("/updateById")
+	@ResponseBody
+	protected BaseResponse<E> updateById(E record){
+		boolean re = this.baseService.updateById(record);
+		if(re) {
+			return BaseResponse.result(record);
+		}else {
+			return BaseResponse.error();
+		}
+	}
+	
+	@RequestMapping(value="/updateListById")
+	@ResponseBody
+	protected BaseResponse<List<E>> updateListById(@RequestBody List<E> list){
+		boolean re = this.baseService.updateBatchById(list);
+		if(re) {
+			return BaseResponse.result(list);
+		}else {
+			return BaseResponse.error();
+		}
+	}
+	
+	@RequestMapping("/deleteById")
+	@ResponseBody
+	protected BaseResponse<E> deleteById(Integer id){
+		boolean re = this.baseService.deleteById(id);
+		if(re) {
+			return BaseResponse.success();
+		}else {
+			return BaseResponse.error();
+		}
+	}
+	
+	@RequestMapping(value="/deleteListById")
+	@ResponseBody
+	protected BaseResponse<E> deleteListById(@RequestBody List<Integer> idList){
+		boolean re = this.baseService.deleteBatchIds(idList);
+		if(re) {
+			return BaseResponse.success();
+		}else {
+			return BaseResponse.error();
+		}
+	}
 }
