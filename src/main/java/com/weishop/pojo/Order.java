@@ -18,7 +18,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-10-27
+ * @since 2017-11-03
  */
 @TableName("bus_order")
 public class Order extends Model<Order> {
@@ -43,12 +43,12 @@ public class Order extends Model<Order> {
 	@TableField("contact_user_name")
 	private String contactUserName;
     /**
-     * 订单价格
+     * 总价
      */
 	@TableField("total_price")
 	private BigDecimal totalPrice;
     /**
-     * 结算价格
+     * 订单价格
      */
 	@TableField("count_price")
 	private BigDecimal countPrice;

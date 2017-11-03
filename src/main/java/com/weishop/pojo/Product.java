@@ -51,6 +51,11 @@ public class Product extends Model<Product> {
      * 单价
      */
 	private BigDecimal price;
+	/**
+     * 单位
+     */
+	@TableField("pro_type")
+	private String proType;
 	private String enabled;
 	@TableField("delete_flag")
     @TableLogic
@@ -121,6 +126,14 @@ public class Product extends Model<Product> {
 		this.price = price;
 	}
 
+	public String getProType() {
+		return proType;
+	}
+
+	public void setProType(String proType) {
+		this.proType = proType;
+	}
+
 	public String getEnabled() {
 		return enabled;
 	}
@@ -182,6 +195,8 @@ public class Product extends Model<Product> {
 	public static final String DISCOUNT = "discount";
 
 	public static final String PRICE = "price";
+	
+	public static final String PRO_TYPE = "pro_type";
 
 	public static final String ENABLED = "enabled";
 
@@ -202,20 +217,9 @@ public class Product extends Model<Product> {
 
 	@Override
 	public String toString() {
-		return "Product{" +
-			"id=" + id +
-			", name=" + name +
-			", code=" + code +
-			", description=" + description +
-			", unit=" + unit +
-			", discount=" + discount +
-			", price=" + price +
-			", enabled=" + enabled +
-			", deleteFlag=" + deleteFlag +
-			", createTime=" + createTime +
-			", createBy=" + createBy +
-			", modifyTime=" + modifyTime +
-			", modifyBy=" + modifyBy +
-			"}";
+		return "Product [id=" + id + ", name=" + name + ", code=" + code + ", description=" + description + ", unit="
+				+ unit + ", discount=" + discount + ", price=" + price + ", proType=" + proType + ", enabled=" + enabled
+				+ ", deleteFlag=" + deleteFlag + ", createTime=" + createTime + ", createBy=" + createBy
+				+ ", modifyTime=" + modifyTime + ", modifyBy=" + modifyBy + "]";
 	}
 }

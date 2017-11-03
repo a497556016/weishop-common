@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import java.math.BigDecimal;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -18,7 +17,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-10-27
+ * @since 2017-11-03
  */
 @TableName("bus_order_list")
 public class OrderList extends Model<OrderList> {
@@ -29,29 +28,20 @@ public class OrderList extends Model<OrderList> {
 	private Integer id;
 	@TableField("order_id")
 	private Integer orderId;
-	@TableField("pro_id")
-	private Integer proId;
-	@TableField("pro_name")
-	private String proName;
-	@TableField("pro_code")
-	private String proCode;
-	@TableField("pro_unit")
-	private String proUnit;
-	@TableField("pro_desc")
-	private String proDesc;
+	@TableField("pro_item_id")
+	private Integer proItemId;
+	private String name;
+	private String code;
+	private String model;
+	private Double size;
+	private String unit;
+	private String description;
 	private Integer count;
 	private BigDecimal price;
+	private String discount;
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
-	@TableField("create_time")
-	private Date createTime;
-	@TableField("create_by")
-	private String createBy;
-	@TableField("modify_time")
-	private Date modifyTime;
-	@TableField("modify_by")
-	private String modifyBy;
 
 
 	public Integer getId() {
@@ -70,44 +60,60 @@ public class OrderList extends Model<OrderList> {
 		this.orderId = orderId;
 	}
 
-	public Integer getProId() {
-		return proId;
+	public Integer getProItemId() {
+		return proItemId;
 	}
 
-	public void setProId(Integer proId) {
-		this.proId = proId;
+	public void setProItemId(Integer proItemId) {
+		this.proItemId = proItemId;
 	}
 
-	public String getProName() {
-		return proName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProName(String proName) {
-		this.proName = proName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getProCode() {
-		return proCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setProCode(String proCode) {
-		this.proCode = proCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getProUnit() {
-		return proUnit;
+	public String getModel() {
+		return model;
 	}
 
-	public void setProUnit(String proUnit) {
-		this.proUnit = proUnit;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public String getProDesc() {
-		return proDesc;
+	public Double getSize() {
+		return size;
 	}
 
-	public void setProDesc(String proDesc) {
-		this.proDesc = proDesc;
+	public void setSize(Double size) {
+		this.size = size;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Integer getCount() {
@@ -126,6 +132,14 @@ public class OrderList extends Model<OrderList> {
 		this.price = price;
 	}
 
+	public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+
 	public String getDeleteFlag() {
 		return deleteFlag;
 	}
@@ -134,65 +148,31 @@ public class OrderList extends Model<OrderList> {
 		this.deleteFlag = deleteFlag;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getModifyTime() {
-		return modifyTime;
-	}
-
-	public void setModifyTime(Date modifyTime) {
-		this.modifyTime = modifyTime;
-	}
-
-	public String getModifyBy() {
-		return modifyBy;
-	}
-
-	public void setModifyBy(String modifyBy) {
-		this.modifyBy = modifyBy;
-	}
-
 	public static final String ID = "id";
 
 	public static final String ORDER_ID = "order_id";
 
-	public static final String PRO_ID = "pro_id";
+	public static final String PRO_ITEM_ID = "pro_item_id";
 
-	public static final String PRO_NAME = "pro_name";
+	public static final String NAME = "name";
 
-	public static final String PRO_CODE = "pro_code";
+	public static final String CODE = "code";
 
-	public static final String PRO_UNIT = "pro_unit";
+	public static final String MODEL = "model";
 
-	public static final String PRO_DESC = "pro_desc";
+	public static final String SIZE = "size";
+
+	public static final String UNIT = "unit";
+
+	public static final String DESCRIPTION = "description";
 
 	public static final String COUNT = "count";
 
 	public static final String PRICE = "price";
 
+	public static final String DISCOUNT = "discount";
+
 	public static final String DELETE_FLAG = "delete_flag";
-
-	public static final String CREATE_TIME = "create_time";
-
-	public static final String CREATE_BY = "create_by";
-
-	public static final String MODIFY_TIME = "modify_time";
-
-	public static final String MODIFY_BY = "modify_by";
 
 	@Override
 	protected Serializable pkVal() {
@@ -204,18 +184,17 @@ public class OrderList extends Model<OrderList> {
 		return "OrderList{" +
 			"id=" + id +
 			", orderId=" + orderId +
-			", proId=" + proId +
-			", proName=" + proName +
-			", proCode=" + proCode +
-			", proUnit=" + proUnit +
-			", proDesc=" + proDesc +
+			", proItemId=" + proItemId +
+			", name=" + name +
+			", code=" + code +
+			", model=" + model +
+			", size=" + size +
+			", unit=" + unit +
+			", description=" + description +
 			", count=" + count +
 			", price=" + price +
+			", discount=" + discount +
 			", deleteFlag=" + deleteFlag +
-			", createTime=" + createTime +
-			", createBy=" + createBy +
-			", modifyTime=" + modifyTime +
-			", modifyBy=" + modifyBy +
 			"}";
 	}
 }

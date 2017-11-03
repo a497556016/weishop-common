@@ -81,7 +81,9 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 		Map<String, Object> params = this.getRequestMapSingle(true);
 		Set<String> keys = params.keySet();
 		for (String key : keys) {
-			wrapper.eq(key, params.get(key));
+			if(!org.apache.commons.lang.StringUtils.contains("current,size", key)) {
+				wrapper.eq(key, params.get(key));
+			}
 		}
 		return wrapper;
 	}
@@ -96,7 +98,7 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 	@RequestMapping("/selectPage")
 	@ResponseBody
 	protected Page<E> selectPage(Page<E> page) {
-		this.baseService.selectPage(page);
+		this.baseService.selectPage(page,this.getRequestMapToWrapper());
 		return page;
 	}
 	
@@ -110,7 +112,7 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 	@RequestMapping("/selectMyPage")
 	@ResponseBody
 	protected PageResponse<E> selectMyPage(Page<E> page) {
-		this.baseService.selectPage(page);
+		this.baseService.selectPage(page,this.getRequestMapToWrapper());
 		PageResponse<E> pageResponse = new PageResponse<>();
 		pageResponse.setCode(ResponseCode.SUCCESS.getCode());
 		pageResponse.setPageNo(page.getCurrent());
