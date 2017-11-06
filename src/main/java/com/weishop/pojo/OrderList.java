@@ -33,7 +33,7 @@ public class OrderList extends Model<OrderList> {
 	private String name;
 	private String code;
 	private String model;
-	private Double size;
+	private String size;
 	private String unit;
 	private String description;
 	private Integer count;
@@ -92,11 +92,11 @@ public class OrderList extends Model<OrderList> {
 		this.model = model;
 	}
 
-	public Double getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(Double size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 

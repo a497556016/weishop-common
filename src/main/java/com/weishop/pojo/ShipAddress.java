@@ -65,7 +65,7 @@ public class ShipAddress extends Model<ShipAddress> {
      * 是否默认项
      */
 	@TableField("is_default")
-	private Boolean isDefault;
+	private boolean isDefault;
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
@@ -175,11 +175,11 @@ public class ShipAddress extends Model<ShipAddress> {
 		this.buildingFloor = buildingFloor;
 	}
 
-	public Boolean getIsDefault() {
+	public boolean isDefault() {
 		return isDefault;
 	}
 
-	public void setIsDefault(Boolean isDefault) {
+	public void setDefault(boolean isDefault) {
 		this.isDefault = isDefault;
 	}
 

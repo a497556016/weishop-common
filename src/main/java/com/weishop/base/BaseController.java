@@ -150,7 +150,7 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 	
 	@RequestMapping("/save")
 	@ResponseBody
-	protected BaseResponse<E> save(E record){
+	protected BaseResponse<E> save(@RequestBody E record){
 		boolean re = this.baseService.insert(record);
 		if(re) {
 			return BaseResponse.result(record);
@@ -172,7 +172,7 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 	
 	@RequestMapping("/updateById")
 	@ResponseBody
-	protected BaseResponse<E> updateById(E record){
+	protected BaseResponse<E> updateById(@RequestBody E record){
 		boolean re = this.baseService.updateById(record);
 		if(re) {
 			return BaseResponse.result(record);
