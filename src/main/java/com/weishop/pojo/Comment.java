@@ -3,6 +3,7 @@ package com.weishop.pojo;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.weishop.pojo.enums.CommentBusType;
 import com.weishop.pojo.enums.CommentType;
 
 import java.util.Date;
@@ -19,7 +20,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-11-10
+ * @since 2017-11-15
  */
 @TableName("bus_comment")
 public class Comment extends Model<Comment> {
@@ -34,10 +35,15 @@ public class Comment extends Model<Comment> {
 	@TableField("p_id")
 	private Integer pId;
     /**
-     * 商品ID
+     * 评论关联ID
      */
-	@TableField("pro_id")
-	private Integer proId;
+	@TableField("bus_id")
+	private Integer busId;
+    /**
+     * 评论关联类型
+     */
+	@TableField("comment_bus_type")
+	private Integer commentBusType;
     /**
      * 评论人
      */
@@ -52,7 +58,7 @@ public class Comment extends Model<Comment> {
      * 评价类型，1：主评价，2：追加评价，3：商家回复
      */
 	@TableField("comment_type")
-	private CommentType commentType;
+	private String commentType;
     /**
      * 评论内容
      */
@@ -90,12 +96,20 @@ public class Comment extends Model<Comment> {
 		this.pId = pId;
 	}
 
-	public Integer getProId() {
-		return proId;
+	public Integer getBusId() {
+		return busId;
 	}
 
-	public void setProId(Integer proId) {
-		this.proId = proId;
+	public void setBusId(Integer busId) {
+		this.busId = busId;
+	}
+
+	public Integer getCommentBusType() {
+		return commentBusType;
+	}
+
+	public void setCommentBusType(Integer commentBusType) {
+		this.commentBusType = commentBusType;
 	}
 
 	public Integer getUserId() {
@@ -114,11 +128,11 @@ public class Comment extends Model<Comment> {
 		this.userName = userName;
 	}
 
-	public CommentType getCommentType() {
+	public String getCommentType() {
 		return commentType;
 	}
 
-	public void setCommentType(CommentType commentType) {
+	public void setCommentType(String commentType) {
 		this.commentType = commentType;
 	}
 
@@ -182,7 +196,9 @@ public class Comment extends Model<Comment> {
 
 	public static final String P_ID = "p_id";
 
-	public static final String PRO_ID = "pro_id";
+	public static final String BUS_ID = "bus_id";
+
+	public static final String COMMENT_BUS_TYPE = "comment_bus_type";
 
 	public static final String USER_ID = "user_id";
 
@@ -214,7 +230,8 @@ public class Comment extends Model<Comment> {
 		return "Comment{" +
 			"id=" + id +
 			", pId=" + pId +
-			", proId=" + proId +
+			", busId=" + busId +
+			", commentBusType=" + commentBusType +
 			", userId=" + userId +
 			", userName=" + userName +
 			", commentType=" + commentType +

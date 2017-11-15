@@ -18,14 +18,15 @@ public enum CommentType implements IEnum {
 		this.name = name;
 	}
 	
+	@JsonValue
 	public String getCode() {
 		return code;
 	}
+	
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
-	@JsonValue
+
 	public String getName() {
 		return name;
 	}
