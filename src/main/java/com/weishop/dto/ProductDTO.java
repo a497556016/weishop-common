@@ -3,6 +3,9 @@ package com.weishop.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import com.weishop.pojo.CommonFile;
 
 
 public class ProductDTO implements Serializable {
@@ -40,6 +43,10 @@ public class ProductDTO implements Serializable {
 	 * 图片路径
 	 */
 	private String picUrl;
+	/**
+	 * 产品图片列表
+	 */
+	private List<CommonFile> images;
 	
 	private Date createTime;
 	private String createBy;
@@ -116,5 +123,11 @@ public class ProductDTO implements Serializable {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	public List<CommonFile> getImages() {
+		return images;
+	}
+	public void setImages(List<CommonFile> images) {
+		this.images = images;
 	}
 }

@@ -18,7 +18,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-11-03
+ * @since 2017-11-10
  */
 @TableName("bus_order")
 public class Order extends Model<Order> {
@@ -52,6 +52,16 @@ public class Order extends Model<Order> {
      */
 	@TableField("count_price")
 	private BigDecimal countPrice;
+    /**
+     * 支付状态，0：待支付，1：已支付
+     */
+	@TableField("pay_status")
+	private String payStatus;
+    /**
+     * 发货状态，0：待发货，1：待收货，2：已收货
+     */
+	@TableField("delivery_status")
+	private String deliveryStatus;
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
@@ -137,6 +147,22 @@ public class Order extends Model<Order> {
 		this.countPrice = countPrice;
 	}
 
+	public String getPayStatus() {
+		return payStatus;
+	}
+
+	public void setPayStatus(String payStatus) {
+		this.payStatus = payStatus;
+	}
+
+	public String getDeliveryStatus() {
+		return deliveryStatus;
+	}
+
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
+
 	public String getDeleteFlag() {
 		return deleteFlag;
 	}
@@ -195,6 +221,10 @@ public class Order extends Model<Order> {
 
 	public static final String COUNT_PRICE = "count_price";
 
+	public static final String PAY_STATUS = "pay_status";
+
+	public static final String DELIVERY_STATUS = "delivery_status";
+
 	public static final String DELETE_FLAG = "delete_flag";
 
 	public static final String CREATE_TIME = "create_time";
@@ -222,6 +252,8 @@ public class Order extends Model<Order> {
 			", contactUserName=" + contactUserName +
 			", totalPrice=" + totalPrice +
 			", countPrice=" + countPrice +
+			", payStatus=" + payStatus +
+			", deliveryStatus=" + deliveryStatus +
 			", deleteFlag=" + deleteFlag +
 			", createTime=" + createTime +
 			", createBy=" + createBy +

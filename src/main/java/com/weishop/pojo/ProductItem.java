@@ -44,6 +44,11 @@ public class ProductItem extends Model<ProductItem> {
      */
 	@TableField("store_total")
 	private Integer storeTotal;
+	/**
+     * 订单数量
+     */
+	@TableField("order_count")
+	private Integer orderCount;
 	private String enabled;
 	@TableField("delete_flag")
     @TableLogic
@@ -146,6 +151,14 @@ public class ProductItem extends Model<ProductItem> {
 		this.modifyBy = modifyBy;
 	}
 
+	public Integer getOrderCount() {
+		return orderCount;
+	}
+
+	public void setOrderCount(Integer orderCount) {
+		this.orderCount = orderCount;
+	}
+
 	public static final String ID = "id";
 
 	public static final String P_CODE = "p_code";
@@ -155,6 +168,8 @@ public class ProductItem extends Model<ProductItem> {
 	public static final String SIZE = "size";
 
 	public static final String STORE_TOTAL = "store_total";
+	
+	public static final String ORDER_COUNT = "order_count";
 
 	public static final String ENABLED = "enabled";
 

@@ -47,13 +47,28 @@ public class PropertyUtils {
 			}
 			modelField.setAccessible(true);
 			Object value = ReflectionUtils.getField(modelField, model);
-			Field dtoField = ReflectionUtils.findField(dto.getClass(), modelField.getName(), modelField.getType());
+			Field dtoField = findField(dto.getClass(), modelField.getName(), modelField.getType());
 			if(null!=dtoField) {
 				dtoField.setAccessible(true);
 				ReflectionUtils.setField(dtoField, dto, value);
 			}
 		}
+		
 		return dto;
+	}
+	
+	private static Field findField(Class clz,String name,Class type){
+		Field field = ReflectionUtils.findField(clz, name, type);
+		if(null==field){
+			Class superClz = clz.getSuperclass();
+			if(!superClz.getName().equals("java.lang.Object")){
+				findField(superClz, name, type);
+			}else{
+				return null;
+			}
+		}
+
+		return field;
 	}
 
 	public static <T> List<T> convertModelToDTO(List<? extends Model<?>> models, Class<T> toClz) {

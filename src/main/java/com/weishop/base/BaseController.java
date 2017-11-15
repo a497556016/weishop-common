@@ -1,5 +1,6 @@
 package com.weishop.base;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,15 +49,17 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 	 */
 	protected HashMap<String, Object> getRequestMapSingle(Boolean columnKey) {
 		HashMap<String, Object> conditions = Maps.newHashMap();
-		Map<String, String[]> map = request.getParameterMap();
-		for (Object o : map.keySet()) {
-			String key = (String) o;
-			Object value = map.get(key)[0];
+		
+		Enumeration<String> names = request.getParameterNames();
+		while(names.hasMoreElements()){
+			String name = names.nextElement();
+			String value = request.getParameter(name);
 			if(columnKey) {
-				key = StringUtils.camelToUnderline(key);//驼峰转下划线
+				name = StringUtils.camelToUnderline(name);//驼峰转下划线
 			}
-			conditions.put(key, value);
+			conditions.put(name, value);
 		}
+		
 		return conditions;
 	}
 	
@@ -187,6 +190,17 @@ public abstract class BaseController<S extends ServiceImpl<? extends BaseMapper<
 		boolean re = this.baseService.updateBatchById(list);
 		if(re) {
 			return BaseResponse.result(list);
+		}else {
+			return BaseResponse.error();
+		}
+	}
+	
+	@RequestMapping("/saveOrUpdate")
+	@ResponseBody
+	protected BaseResponse<E> saveOrUpdate(@RequestBody E record){
+		boolean re = this.baseService.insertOrUpdate(record);
+		if(re) {
+			return BaseResponse.result(record);
 		}else {
 			return BaseResponse.error();
 		}

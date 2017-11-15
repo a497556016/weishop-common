@@ -3,7 +3,8 @@ package com.weishop.pojo;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
-import java.math.BigDecimal;
+import com.weishop.pojo.enums.CommentType;
+
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
@@ -14,49 +15,52 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 商品
+ * 
  * </p>
  *
  * @author HeShaowei
- * @since 2017-10-27
+ * @since 2017-11-10
  */
-@TableName("bus_product")
-public class Product extends Model<Product> {
+@TableName("bus_comment")
+public class Comment extends Model<Comment> {
 
     private static final long serialVersionUID = 1L;
 
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
     /**
-     * 名称
+     * 回复的评论ID
      */
-	private String name;
+	@TableField("p_id")
+	private Integer pId;
     /**
-     * 编码
+     * 商品ID
      */
-	private String code;
+	@TableField("pro_id")
+	private Integer proId;
     /**
-     * 描述
+     * 评论人
      */
-	private String description;
+	@TableField("user_id")
+	private Integer userId;
     /**
-     * 单位
+     * 评论人
      */
-	private String unit;
+	@TableField("user_name")
+	private String userName;
     /**
-     * 折扣
+     * 评价类型，1：主评价，2：追加评价，3：商家回复
      */
-	private BigDecimal discount;
+	@TableField("comment_type")
+	private CommentType commentType;
     /**
-     * 单价
+     * 评论内容
      */
-	private BigDecimal price;
-	/**
-     * 产品推荐类型
+	private String comment;
+    /**
+     * 5星评分
      */
-	@TableField("pro_type")
-	private String proType;
-	private String enabled;
+	private Integer stars;
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
@@ -78,68 +82,60 @@ public class Product extends Model<Product> {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Integer getpId() {
+		return pId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setpId(Integer pId) {
+		this.pId = pId;
 	}
 
-	public String getCode() {
-		return code;
+	public Integer getProId() {
+		return proId;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setProId(Integer proId) {
+		this.proId = proId;
 	}
 
-	public String getDescription() {
-		return description;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
-	public String getUnit() {
-		return unit;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public BigDecimal getDiscount() {
-		return discount;
+	public CommentType getCommentType() {
+		return commentType;
 	}
 
-	public void setDiscount(BigDecimal discount) {
-		this.discount = discount;
+	public void setCommentType(CommentType commentType) {
+		this.commentType = commentType;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
-	public String getProType() {
-		return proType;
+	public Integer getStars() {
+		return stars;
 	}
 
-	public void setProType(String proType) {
-		this.proType = proType;
-	}
-
-	public String getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
+	public void setStars(Integer stars) {
+		this.stars = stars;
 	}
 
 	public String getDeleteFlag() {
@@ -184,21 +180,19 @@ public class Product extends Model<Product> {
 
 	public static final String ID = "id";
 
-	public static final String NAME = "name";
+	public static final String P_ID = "p_id";
 
-	public static final String CODE = "code";
+	public static final String PRO_ID = "pro_id";
 
-	public static final String DESCRIPTION = "description";
+	public static final String USER_ID = "user_id";
 
-	public static final String UNIT = "unit";
+	public static final String USER_NAME = "user_name";
 
-	public static final String DISCOUNT = "discount";
+	public static final String COMMENT_TYPE = "comment_type";
 
-	public static final String PRICE = "price";
-	
-	public static final String PRO_TYPE = "pro_type";
+	public static final String COMMENT = "comment";
 
-	public static final String ENABLED = "enabled";
+	public static final String STARS = "stars";
 
 	public static final String DELETE_FLAG = "delete_flag";
 
@@ -217,9 +211,20 @@ public class Product extends Model<Product> {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", code=" + code + ", description=" + description + ", unit="
-				+ unit + ", discount=" + discount + ", price=" + price + ", proType=" + proType + ", enabled=" + enabled
-				+ ", deleteFlag=" + deleteFlag + ", createTime=" + createTime + ", createBy=" + createBy
-				+ ", modifyTime=" + modifyTime + ", modifyBy=" + modifyBy + "]";
+		return "Comment{" +
+			"id=" + id +
+			", pId=" + pId +
+			", proId=" + proId +
+			", userId=" + userId +
+			", userName=" + userName +
+			", commentType=" + commentType +
+			", comment=" + comment +
+			", stars=" + stars +
+			", deleteFlag=" + deleteFlag +
+			", createTime=" + createTime +
+			", createBy=" + createBy +
+			", modifyTime=" + modifyTime +
+			", modifyBy=" + modifyBy +
+			"}";
 	}
 }

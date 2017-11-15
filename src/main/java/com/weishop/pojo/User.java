@@ -17,7 +17,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author HeShaowei
- * @since 2017-10-27
+ * @since 2017-11-10
  */
 @TableName("sys_user")
 public class User extends Model<User> {
@@ -32,8 +32,26 @@ public class User extends Model<User> {
 	private String salt;
 	@TableField("user_name")
 	private String userName;
+    /**
+     * 生日
+     */
+	private Date birthday;
+    /**
+     * 性别
+     */
+	private String sex;
 	private String email;
 	private String phone;
+    /**
+     * 证件号码
+     */
+	@TableField("card_id")
+	private String cardId;
+    /**
+     * 证件类型，1：身份证
+     */
+	@TableField("card_type")
+	private String cardType;
 	@TableField("delete_flag")
     @TableLogic
 	private String deleteFlag;
@@ -87,6 +105,22 @@ public class User extends Model<User> {
 		this.userName = userName;
 	}
 
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -101,6 +135,22 @@ public class User extends Model<User> {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getCardId() {
+		return cardId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+
+	public String getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
 	}
 
 	public String getDeleteFlag() {
@@ -153,9 +203,17 @@ public class User extends Model<User> {
 
 	public static final String USER_NAME = "user_name";
 
+	public static final String BIRTHDAY = "birthday";
+
+	public static final String SEX = "sex";
+
 	public static final String EMAIL = "email";
 
 	public static final String PHONE = "phone";
+
+	public static final String CARD_ID = "card_id";
+
+	public static final String CARD_TYPE = "card_type";
 
 	public static final String DELETE_FLAG = "delete_flag";
 
@@ -180,8 +238,12 @@ public class User extends Model<User> {
 			", password=" + password +
 			", salt=" + salt +
 			", userName=" + userName +
+			", birthday=" + birthday +
+			", sex=" + sex +
 			", email=" + email +
 			", phone=" + phone +
+			", cardId=" + cardId +
+			", cardType=" + cardType +
 			", deleteFlag=" + deleteFlag +
 			", createTime=" + createTime +
 			", createBy=" + createBy +
